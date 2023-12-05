@@ -7,8 +7,9 @@ let port = process.env.PORT ?? 3334;
 const serverTCP = net.createServer();
 
 serverTCP.on("connection", (socket) =>{
-    socket.on("data",() =>{
-        console.log("Recibiendo datos");
+    socket.on("data",(bufferData) =>{
+        const data = JSON.parse(bufferData.toString());
+        console.log(data);
     });
     socket.on("close",() =>{
         console.log("Cliente desconectado");
@@ -18,7 +19,7 @@ serverTCP.on("connection", (socket) =>{
     });
 
 
-    console.log("Cliente conectado");
+    console.log("Cliente conectado", new Date().toLocaleString());
 });
 
 
