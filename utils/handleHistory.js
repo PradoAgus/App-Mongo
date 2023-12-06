@@ -7,10 +7,10 @@ const readHistory = () => { //Lee el historial
     return JSON.parse(jsonData.toString());
 };
 
-const writeHistory = (state) => { //Escribe en el historial
+const writeHistory = (state, id) => { //Escribe en el historial
     const data = readHistory();
     const register = {
-        id: randomUUID(),
+        id,
         date: new Date().toLocaleString()
     };
     if(state === "connected"){
